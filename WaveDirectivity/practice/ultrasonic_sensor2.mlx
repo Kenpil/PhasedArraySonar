@@ -1,0 +1,34 @@
+a = 2;
+b = 13;
+c = 1.7276;
+syms th ph
+
+%%theta=transpose(-1:0.01:1);
+%%MagE=(cot(theta*pi/2).^2).*(sin(5*pi*(cos(theta*pi)-1))).^2;
+%%polarplot(theta*pi,MagE,'Linewidth',1,'color',[.21 .81 .94]);
+
+theta=linspace(-pi,pi,180);
+phi=linspace(-pi,pi,180);
+
+%% The pattern has negative values
+pattern1 = b * (cos(th * c) * cos(ph * c) + a);
+x =  b * (cos(th * c) * cos(ph * c) + a) * cos(ph) * cos(th);
+y =  b * (cos(th * c) * cos(ph * c) + a) * cos(ph) * sin(th);
+z =  b * (cos(th * c) * cos(ph * c) + a) * sin(ph);
+%%pattern2 = b * cos(1 / 2 * pi * c) + 30 * cos(th);
+%%pattern(th) = piecewise(th < - 1 / 2 * pi, pattern2, - 1 / 2 * pi < th < 1 / 2 * pi, pattern1, 1 / 2 * pi < th, pattern2)
+%%pattern(th, ph) = piecewise(- 1 / 2 < th < 1 / 2 * pi & - 1 / 2 < ph < 1 / 2 * pi, pattern1)
+%%if(- 1 / 2 * pi < theta < 1 / 2 * pi .&& - 1 / 2 * pi < phi < 1 / 2 * pi)
+  %%  pattern(theta, phi) = pattern1
+%%end
+
+%% Makes the max of the pattern 0
+pattern(th, ph)=pattern(th, ph)-max(pattern(theta, phi));
+%% Plots the figure
+figure
+fsurf(x, y, z, [-1/2*pi 1/2*pi -1/2*pi 1/2*pi])
+%%pax = polaraxes;
+%%polarplot(theta, phi, pattern(theta, phi))
+%% This is what you want. Add a little bit of extra space after the minimum and maximum value
+%%rlim([min(pattern(theta))  max(pattern(theta))])
+%%rlim([-50 5])

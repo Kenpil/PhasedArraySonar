@@ -1,0 +1,16 @@
+f = 20000;
+c = 340;
+lambda = c / f
+k = 2 * pi / lambda
+a = 0.1;
+th = linspace(-1/2*pi, 1/2*pi, 180);
+
+A1 = (2 * besselj(1, k * a * sin(th)))
+A2 = (k * a * sin(th))
+dire = A1 ./ A2
+[S, M] = bounds(dire)
+dire = 20 * log10(dire / M)
+figure
+pax = polaraxes
+polarplot(th, dire)
+rlim([-40 0])

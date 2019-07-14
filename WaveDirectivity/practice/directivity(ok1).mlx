@@ -2,12 +2,13 @@
 アコースティックイメージング
 ベッセル関数
 20log10(P/P0)
+虚数部って何？？？こわっ
 %}
 f = 40000;
 c = 340;
 lambda = c / f
 k = 2 * pi / lambda
-a = 0.1;
+a = 0.0049;
 th = linspace(-1/2*pi, 1/2*pi, 180);
 ph = linspace(-1/2*pi, 1/2*pi, 180);
 
@@ -16,16 +17,16 @@ A2 = (k * a * sin(th));
 oned = A1 ./ A2;
 [S, M] = bounds(oned);
 %oned = 20 * log10(oned / M);
-%dbの確認用、本編に使わないように
 figure
 pax = polaraxes
 polarplot(th, oned)
-rlim([-0.3 0.3])
+rlim([-40 0])
 
 
-N = 128;
+
+N = 64;
 d = lambda / 2;
-%d = 0.01
+d = 0.01
 aimth = 1 / 4 * pi;
 A3 = sin((N * k * d / 2) * (sin(th) - sin(aimth)))
 A4 = N * sin((k * d /2) * (sin(th) - sin(aimth)))
@@ -36,4 +37,5 @@ direction = 20 * log10(direction / M)
 figure
 pax = polaraxes
 polarplot(th, direction)
-rlim([-100 0])
+rlim([-100 30])
+%}

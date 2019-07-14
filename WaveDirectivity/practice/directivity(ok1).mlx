@@ -15,16 +15,18 @@ A1 = (2 * besselj(1, k * a * sin(th)));
 A2 = (k * a * sin(th));
 oned = A1 ./ A2;
 [S, M] = bounds(oned);
-oned = 20 * log10(oned / M);
+%oned = 20 * log10(oned / M);
+%dbの確認用、本編に使わないように
 figure
 pax = polaraxes
 polarplot(th, oned)
-rlim([-40 0])
+rlim([-0.3 0.3])
 
-N = 7;
-d = lambda * 2;
-d = 0.01
-aimth = 0 * pi;
+
+N = 128;
+d = lambda / 2;
+%d = 0.01
+aimth = 1 / 4 * pi;
 A3 = sin((N * k * d / 2) * (sin(th) - sin(aimth)))
 A4 = N * sin((k * d /2) * (sin(th) - sin(aimth)))
 direction = A3 ./ A4
@@ -34,4 +36,4 @@ direction = 20 * log10(direction / M)
 figure
 pax = polaraxes
 polarplot(th, direction)
-rlim([-60 0])
+rlim([-100 0])

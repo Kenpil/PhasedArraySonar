@@ -1,0 +1,60 @@
+%{
+
+%}
+f = 40000;
+c = 340;
+lambda = c / f
+k = 2 * pi / lambda
+a = 0.0049;
+syms th ph
+step = 36;
+th = linspace(-1/2*pi, 1/2*pi, step);
+ph = linspace(-1/2*pi, 1/2*pi, step);
+%ph = zeros(step);
+orsin = zeros(step, step);
+oned = zeros(step, step);
+x = zeros(step, step);
+y = zeros(step, step);
+z = zeros(step, step);
+
+for i = 1:step
+    for j = 1:step
+        orsin(i, j) = (1 - ((cos(th(i) + ph(j)) + cos(th(i) - ph(j))) ^ 2) / 4 ) ^ (1 / 2);
+        oned(i, j) = (2 * besselj(1, k * a * orsin(i, j))) / (k * a * orsin(i, j));
+    end
+end
+
+M = max(oned, [], 'all');
+for i = 1:step
+    for j = 1:step
+        oned(i, j) = 20 * log10(oned(i, j) / M) + 30;
+        %上の+30は直交座標系表示のため使用。極座標表示では除く
+    end
+end
+%{
+pax = polaraxes
+rlim([-40, 5]);
+for i = 1:step
+    polarplot(th(i), oned(i, 1), '-o');
+    hold on
+end
+rlim([-40, 5]);
+%}
+
+for i = 1:step
+    for j = 1:step
+        x(i, j) = oned(i, j) * cos(ph(j)) * cos(th(i));
+        y(i, j) = oned(i, j) * cos(ph(j)) * sin(th(i));
+        z(i, j) = oned(i, j) * sin(ph(j));
+    end
+end
+
+plot3(x, y, z);
+
+for i = 1:step
+    for j = 1:step
+        plot3(x(i, j), y(i, j), z(i, j))
+        hold on
+    end
+end
+%}

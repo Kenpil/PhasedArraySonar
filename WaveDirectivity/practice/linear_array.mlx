@@ -1,0 +1,68 @@
+f = 40000;
+c = 340;
+lambda = c / f
+k = 2 * pi / lambda
+a = 0.0049;
+syms al be;
+step = 36;
+al = linspace(-1/2*pi, 1/2*pi, step);
+al = zeros(step);
+be = linspace(-1/2*pi, 1/2*pi, step);
+%ph = zeros(step);
+
+orsin = zeros(step, step);
+oned = zeros(step, step);
+x = zeros(step, step);
+y = zeros(step, step);
+z = zeros(step, step);
+
+d = 0.01;
+%d = lambda / 2;
+diagonal = 5;
+n = (diagonal - 1) / 2;
+Da = zeros(step, step);
+
+aimth = 1 / 3 * pi;
+N = 64;
+l = 0;
+for i = 1:step
+    for j = 1:step
+        %A = k/2*abs(d*cos(1/3*l*pi-al(i)))*(sin(be(j))-sin(aimth));
+         A = k/2*abs(d)*(sin(be(i))-sin(aimth));
+         Da(i, j) = sin(N*A) / (N*sin(A));
+         if (Da(i, j) < 0)
+             Da(i, j) = 0.001;
+         end
+    end
+end
+
+M = max(Da, [], 'all');
+
+for i = 1:step
+    for j = 1:step
+        Da(i, j) = 20*log10(Da(i, j) / M);
+    end
+end
+
+for i = 1:step
+    polarplot(be(i), Da(i, 1), '.');
+    hold on
+end
+rlim([-50 5])
+%{
+for i = 1:step
+    for j = 1:step
+        x(i, j) = Da(i, j)*sin(be(i))*cos(al(j));
+        y(i, j) = Da(i, j)*sin(be(i))*sin(al(j));
+        z(i, j) = Da(i, j)*cos(be(i));
+    end
+end
+
+
+for i = 1:step
+    for i = 1:step
+        scatter3(x(i, 1), y(i, 1), z(i, 1), '.');
+        hold on
+    end
+end
+%}

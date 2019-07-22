@@ -1,4 +1,4 @@
-dbでなく、何か別の単位
+%dbでなく、何か別の単位
 %http://www2.elo.utfsm.cl/~elo352/biblio/antenas/Lectura%2018.pdf
 %http://www.rish.kyoto-u.ac.jp/labs/fukao-lab/members/fukao/new/2006lecture/8kishi.pdf
 %http://www.waves.utoronto.ca/prof/svhum/ece422/notes/15-arrays2.pdf
@@ -8,7 +8,7 @@ lambda = c / f
 k = 2 * pi / lambda
 a = 0.0049;
 syms al be;
-step = 45;
+step = 30;
 al = linspace(-1/2*pi, 1/2*pi, step);
 be = linspace(-1/2*pi, 1/2*pi, step);
 %al = linspace(-pi, pi, step);
@@ -29,6 +29,7 @@ aimal = 0 / 3 * pi;
 aimbe = 0 / 3 * pi;
 
 N = 5;
+M = N;
 dx = d;
 dy = d;
 bx = -k*dx*sin(aimbe)*cos(aimal);
@@ -38,20 +39,20 @@ for l = 1:step
     for j = 1:step
         deltam = k*dx*sin(be(l))*cos(al(j));
         deltan = k*dy*sin(be(l))*sin(al(j));
-        %{
-        for m = 0:N-1
+        
+        for m = 0:M-1
             for n = 0:N-1
                 Da(l, j) = Da(l, j) + exp(1i*(m*(deltam+bx)+n*(deltan+by)));
             end
         end
-        %}
+        
         %A = k/2*abs(d*cos(1/3*l*pi-al(i)))*(sin(be(j))-sin(aimth));
         %A = k/2*abs(d)*(sin(be(i))*cos(al(j))-sin(aimbe)*cos(aimal));
         %Da(i, j) = (sin(N*A) * sin(N*A)) / ((N*sin(A)) * (N*sin(A)));
         
-        psx = k*dx*sin(be(l))*cos(al(j)) + bx;
-        psy = k*dy*sin(be(l))*sin(al(j)) + by;
-        Da(l, j) = (sin(N*psx/2)*sin(N*psy/2)) / (N*N*sin(psx/2)*sin(psy/2));
+        %psx = k*dx*sin(be(l))*cos(al(j)) + bx;
+        %psy = k*dy*sin(be(l))*sin(al(j)) + by;
+        %Da(l, j) = (sin(N*psx/2)*sin(N*psy/2)) / (N*N*sin(psx/2)*sin(psy/2));
         
         
         %Da(i, j) = exp(i*)
@@ -76,7 +77,7 @@ for l = 1:step
 end
 
 
-
+%{
 M = max(Da, [], 'all');
 S = min(Da, [], 'all');
 L =  M - S;

@@ -68,20 +68,21 @@ for l = 1:step
     end
 end
 %}
-M = max(Da, [], 'all');
+Max = max(Da, [], 'all');
 
 for l = 1:step
     for j = 1:step
-        Da(l, j) = 20*log10(Da(l, j) / M);
+        %Da(l, j) = 20*log10(Da(l, j) / Max);
+        Da(l, j) = Da(l, j) / Max;
     end
 end
 
 
 %{
-M = max(Da, [], 'all');
+Max = max(Da, [], 'all');
 S = min(Da, [], 'all');
 L =  M - S;
-L = 100;
+L = 50;
 for l = 1:step
     for j = 1:step
         Da(l, j) = Da(l, j) + L;

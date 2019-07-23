@@ -1,4 +1,7 @@
+%dbでなく、何か別の単位
 %http://www2.elo.utfsm.cl/~elo352/biblio/antenas/Lectura%2018.pdf
+%http://www.rish.kyoto-u.ac.jp/labs/fukao-lab/members/fukao/new/2006lecture/8kishi.pdf
+%http://www.waves.utoronto.ca/prof/svhum/ece422/notes/15-arrays2.pdf
 f = 40000;
 c = 340;
 lambda = c / f
@@ -7,74 +10,94 @@ a = 0.0049;
 syms al be;
 step = 45;
 al = linspace(-1/2*pi, 1/2*pi, step);
-%al = zeros(step);
 be = linspace(-1/2*pi, 1/2*pi, step);
-%ph = zeros(step);
-
+%al = linspace(-pi, pi, step);
+%be = linspace(-pi, pi, step);
 orsin = zeros(step, step);
 oned = zeros(step, step);
-x = zeros(step, step);
-y = zeros(step, step);
-z = zeros(step, step);
-
 d = 0.01;
-%d = lambda / 2;
+d = lambda / 2;
 diagonal = 5;
-n = (diagonal - 1) / 2;
 Da = zeros(step, step);
-
-aimal = 0 / 3 * pi;
-aimbe = 0 / 3 * pi;
-
-N = 64;
-l = 0;
+aimal = 1 / 3 * pi;
+aimbe = 1 / 3 * pi;
+N = 16;
+M = N;
 dx = d;
 dy = d;
-for i = 1:step
+exptmp = zeros(M, N);
+exptmp2 = zeros(M, N);
+expall = zeros(step, step);
+bx = -k*dx*sin(aimbe)*cos(aimal);
+by = -k*dy*sin(aimbe)*sin(aimal);
+for l = 1:step
     for j = 1:step
-        %A = k/2*abs(d*cos(1/3*l*pi-al(i)))*(sin(be(j))-sin(aimth));
-        %A = k/2*abs(d)*(sin(be(i))*cos(al(j))-sin(aimbe)*cos(aimal));
-        %Da(i, j) = (sin(N*A) * sin(N*A)) / ((N*sin(A)) * (N*sin(A)));
-        bx = -k*dx*sin(aimbe)*cos(aimal);
-        by = -k*dy*sin(aimbe)*sin(aimal);
-        psx = k*dx*sin(be(i))*cos(al(j)) + bx;
-        psy = k*dy*sin(be(i))*sin(al(j)) + by;
-        Da(i, j) = (sin(N*psx/2)*sin(N*psy/2)) / (N*N*sin(psx/2)*sin(psy/2));
-        %if (Da(i, j) < 0)
-        %    Da(i, j) = 0.001;
-        %end
+        deltam = k*dx*sin(be(l))*cos(al(j));
+        deltan = k*dy*sin(be(l))*sin(al(j));
+        for m = 0:M-1
+            for n = 0:N-1
+                exptmp(m+1, n+1) = exp(1i*(m*(deltam+bx)+ n*(deltan+by)));
+                Da(l, j) = Da(l, j) + exptmp(m+1, n+1);
+                %exptmp(m+1, n+1) =abs(exptmp(m+1, n+1));
+            end
+        end
+        Max = (max(exptmp, [], 'all'));
+        expall(l, j) = Max;
     end
 end
 
-M = max(Da, [], 'all');
 
-for i = 1:step
+for l = 1:step
     for j = 1:step
-        Da(i, j) = 20*log10(Da(i, j) / M) + 70;
+        %Da(l, j) = 20*log10(Da(l, j) / Max);
+        %Da(l, j) = Da(l, j) / (Max);
     end
 end
+
+Max = max(Da, [], 'all');
+for l = 1:step
+    for j = 1:step
+        Da(l, j) = abs(Da(l, j) / Max);
+    end
+end
+
+x = zeros(step * step, 1);
+y = zeros(step * step, 1);
+z = zeros(step * step, 1);
+for l = 1:step
+    for j = 1:step
+        x((l-1)*step +  j) = Da(l, j)*sin(be(l))*cos(al(j));
+        y((l-1)*step +  j) = Da(l, j)*sin(be(l))*sin(al(j));
+        z((l-1)*step +  j) = Da(l, j)*cos(be(l));
+    end
+end
+
+figure
+scatter3(x, y, z, '.');
+
 %{
-for i = 1:step
-    polarplot(be(i), Da(i, 1), '.');
-    hold on
-end
-rlim([-50 5])
-%}
-for i = 1:step
+x = zeros(step , step);
+y = zeros(step , step);
+z = zeros(step , step);
+for l = 1:step
     for j = 1:step
-        x(i, j) = Da(i, j)*sin(be(i))*cos(al(j));
-        y(i, j) = Da(i, j)*sin(be(i))*sin(al(j));
-        z(i, j) = Da(i, j)*cos(be(i));
+        x(l, j) = Da(l, j)*sin(be(l))*cos(al(j));
+        y(l, j) = Da(l, j)*sin(be(l))*sin(al(j));
+        z(l, j) = Da(l, j)*cos(be(l));
     end
 end
+%}
+%Tri = zeros(step*step, 3);
 
-
+%{
 for j = 1:step
-    for i = 1:step
-        if(Da(i, j) > 30)
-            scatter3(x(i, j), y(i, j), z(i, j), '.');
+    for l = 1:step
+        %if(Da(l, j) > 1 / 2 * L)
+        if(z(l, j) > 0)
+            scatter3(x(l, j), y(l, j), z(l, j), '.');
         end
         hold on
     end
 end
+%}
 %}

@@ -8,64 +8,58 @@ lambda = c / f
 k = 2 * pi / lambda
 a = 0.0049;
 syms al be;
-step = 30;
+step = 45;
 al = linspace(-1/2*pi, 1/2*pi, step);
 be = linspace(-1/2*pi, 1/2*pi, step);
 %al = linspace(-pi, pi, step);
 %be = linspace(-pi, pi, step);
-
 orsin = zeros(step, step);
 oned = zeros(step, step);
 x = zeros(step, step);
 y = zeros(step, step);
 z = zeros(step, step);
-
 d = 0.01;
 d = lambda / 2;
 diagonal = 5;
 Da = zeros(step, step);
-
 aimal = 0 / 3 * pi;
 aimbe = 0 / 3 * pi;
-
 N = 5;
 M = N;
 dx = d;
 dy = d;
+exptmp = zeros(M, N);
 bx = -k*dx*sin(aimbe)*cos(aimal);
 by = -k*dy*sin(aimbe)*sin(aimal);
-
 for l = 1:step
     for j = 1:step
         deltam = k*dx*sin(be(l))*cos(al(j));
         deltan = k*dy*sin(be(l))*sin(al(j));
-        
         for m = 0:M-1
             for n = 0:N-1
-                Da(l, j) = Da(l, j) + exp(1i*(m*(deltam+bx)+n*(deltan+by)));
+                exptmp(m+1, n+1) = exp(1i*(m*(deltam+bx)+n*(deltan+by)));
+                Da(l, j) = Da(l, j) + exptmp(m+1, m+1);
             end
         end
-        
+        Max = (max(exptmp, [], 'all'));
+        Da(l, j) = (Da(l,j)) / Max;
         %A = k/2*abs(d*cos(1/3*l*pi-al(i)))*(sin(be(j))-sin(aimth));
         %A = k/2*abs(d)*(sin(be(i))*cos(al(j))-sin(aimbe)*cos(aimal));
         %Da(i, j) = (sin(N*A) * sin(N*A)) / ((N*sin(A)) * (N*sin(A)));
-        
         %psx = k*dx*sin(be(l))*cos(al(j)) + bx;
         %psy = k*dy*sin(be(l))*sin(al(j)) + by;
-        %Da(l, j) = (sin(N*psx/2)*sin(N*psy/2)) / (N*N*sin(psx/2)*sin(psy/2));
-        
-        
+        %Da(l, j) = (sin(N*psx/2)*sin(M*psy/2)) / (N*M*sin(psx/2)*sin(psy/2));
         %Da(i, j) = exp(i*)
         %if (Da(i, j) < 0)
-        %    Da(i, j) = 0.001;
+        % Da(i, j) = 0.001;
         %end
     end
 end
 %{
 for l = 1:step
-    for j = 1:step
-        Da(l, j) = abs(Da(l, j));
-    end
+for j = 1:step
+Da(l, j) = abs(Da(l, j));
+end
 end
 %}
 Max = max(Da, [], 'all');
@@ -76,25 +70,23 @@ for l = 1:step
         Da(l, j) = Da(l, j) / Max;
     end
 end
-
-
-%{
 Max = max(Da, [], 'all');
 S = min(Da, [], 'all');
-L =  M - S;
+L = M - S;
 L = 50;
 for l = 1:step
     for j = 1:step
-        Da(l, j) = Da(l, j) + L;
+        %Da(l, j) = abs(Da(l, j));
     end
 end
 %{
 for i = 1:step
-    polarplot(be(i), Da(i, 1), '.');
-    hold on
+polarplot(be(i), Da(i, 1), '.');
+hold on
 end
 rlim([-50 5])
 %}
+
 for l = 1:step
     for j = 1:step
         x(l, j) = Da(l, j)*sin(be(l))*cos(al(j));
@@ -102,11 +94,11 @@ for l = 1:step
         z(l, j) = Da(l, j)*cos(be(l));
     end
 end
-
 figure
 for j = 1:step
     for l = 1:step
-        if(Da(l, j) > 1 / 2 * L)
+        %if(Da(l, j) > 1 / 2 * L)
+        if(z(l, j) > 0)
             scatter3(x(l, j), y(l, j), z(l, j), '.');
         end
         hold on

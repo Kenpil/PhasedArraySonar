@@ -64,7 +64,8 @@ for l = 1:step
     end
 end
 
-%Da = Ds .* Da;
+Da = Ds .* Da;
+%c = 1480だとDs指向性はほぼ球。掛けてもそう変化なし。
 
 Max = max(Da, [], 'all');
 for l = 1:step

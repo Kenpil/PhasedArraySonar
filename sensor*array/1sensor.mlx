@@ -1,0 +1,65 @@
+%{
+アコースティックイメージング
+ベッセル関数
+20log10(P/P0)
+虚数部って何？？？こわっ
+%}
+f = 40000;
+c = 340;
+lambda = c / f
+step = 45;
+k = 2 * pi / lambda
+a = 0.0049;
+be = linspace(-1/2*pi, 1/2*pi, step);
+al = linspace(-1/2*pi, 1/2*pi, step);
+Ds = zeros(step, step);
+
+for l = 1:step
+    A1 = 2 * besselj(1, k * a * (sin(be(l))));
+    A2 = k * a * (sin(be(l)));
+    for j = 1:step
+        Ds(l, j) = A1 / A2;
+    end
+end
+
+Min = max(Ds, [], 'all');
+%Ds = abs(Ds);
+%Ds = (20 * log10(Ds / Min));
+x = zeros(step * step, 1);
+y = zeros(step * step, 1);
+z = zeros(step * step, 1);
+for l = 1:step
+    for j = 1:step
+        x((l-1)*step +  j) = Ds(l, j)*sin(be(l))*cos(al(j));
+        y((l-1)*step +  j) = Ds(l, j)*sin(be(l))*sin(al(j));
+        z((l-1)*step +  j) = Ds(l, j)*cos(be(l));
+    end
+end
+
+figure
+scatter3(x, y, z, '.');
+%{
+[S, M] = bounds(oned);
+%oned = 20 * log10(oned / M);
+figure
+pax = polaraxes
+polarplot(th, oned)
+rlim([-40 0])
+
+
+
+N = 64;
+d = lambda / 2;
+d = 0.01
+aimth = 1 / 4 * pi;
+A3 = sin((N * k * d / 2) * (sin(th) - sin(aimth)))
+A4 = N * sin((k * d /2) * (sin(th) - sin(aimth)))
+direction = A3 ./ A4
+direction = oned .* direction
+[S, M] = bounds(direction)
+direction = 20 * log10(direction / M)
+figure
+pax = polaraxes
+polarplot(th, direction)
+rlim([-100 30])
+%}

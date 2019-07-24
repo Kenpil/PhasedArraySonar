@@ -38,16 +38,16 @@ end
 
 figure
 scatter3(x, y, z, '.');
-%{
-[S, M] = bounds(oned);
-%oned = 20 * log10(oned / M);
+
+M = max(Ds, [], 'all');
+Ds = 20 * log10(Ds / M);
 figure
 pax = polaraxes
-polarplot(th, oned)
-rlim([-40 0])
+polarplot(al(:), Ds(:,1));
+rlim([-40 5])
 
 
-
+%{
 N = 64;
 d = lambda / 2;
 d = 0.01

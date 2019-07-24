@@ -1,107 +1,65 @@
-%dbでなく、何か別の単位
-%http://www2.elo.utfsm.cl/~elo352/biblio/antenas/Lectura%2018.pdf
-%http://www.rish.kyoto-u.ac.jp/labs/fukao-lab/members/fukao/new/2006lecture/8kishi.pdf
-%http://www.waves.utoronto.ca/prof/svhum/ece422/notes/15-arrays2.pdf
+%{
+アコースティックイメージング
+ベッセル関数
+20log10(P/P0)
+虚数部って何？？？こわっ
+%}
 f = 40000;
 c = 340;
 lambda = c / f
+step = 45;
 k = 2 * pi / lambda
 a = 0.0049;
-syms al be;
-step = 45;
-al = linspace(-1/2*pi, 1/2*pi, step);
 be = linspace(-1/2*pi, 1/2*pi, step);
-%al = linspace(-pi, pi, step);
-%be = linspace(-pi, pi, step);
-orsin = zeros(step, step);
-oned = zeros(step, step);
-x = zeros(step, step);
-y = zeros(step, step);
-z = zeros(step, step);
-d = 0.01;
-d = lambda / 2;
-diagonal = 5;
-Da = zeros(step, step);
-aimal = 0 / 3 * pi;
-aimbe = 0 / 3 * pi;
-N = 5;
-M = N;
-dx = d;
-dy = d;
-exptmp = zeros(M, N);
-bx = -k*dx*sin(aimbe)*cos(aimal);
-by = -k*dy*sin(aimbe)*sin(aimal);
-for l = 1:step
-    for j = 1:step
-        deltam = k*dx*sin(be(l))*cos(al(j));
-        deltan = k*dy*sin(be(l))*sin(al(j));
-        for m = 0:M-1
-            for n = 0:N-1
-                exptmp(m+1, n+1) = exp(1i*(m*(deltam+bx)+n*(deltan+by)));
-                Da(l, j) = Da(l, j) + exptmp(m+1, m+1);
-            end
-        end
-        Max = (max(exptmp, [], 'all'));
-        Da(l, j) = (Da(l,j)) / Max;
-        %A = k/2*abs(d*cos(1/3*l*pi-al(i)))*(sin(be(j))-sin(aimth));
-        %A = k/2*abs(d)*(sin(be(i))*cos(al(j))-sin(aimbe)*cos(aimal));
-        %Da(i, j) = (sin(N*A) * sin(N*A)) / ((N*sin(A)) * (N*sin(A)));
-        %psx = k*dx*sin(be(l))*cos(al(j)) + bx;
-        %psy = k*dy*sin(be(l))*sin(al(j)) + by;
-        %Da(l, j) = (sin(N*psx/2)*sin(M*psy/2)) / (N*M*sin(psx/2)*sin(psy/2));
-        %Da(i, j) = exp(i*)
-        %if (Da(i, j) < 0)
-        % Da(i, j) = 0.001;
-        %end
-    end
-end
-%{
-for l = 1:step
-for j = 1:step
-Da(l, j) = abs(Da(l, j));
-end
-end
-%}
-Max = max(Da, [], 'all');
+al = linspace(-1/2*pi, 1/2*pi, step);
+Ds = zeros(step, step);
 
 for l = 1:step
     for j = 1:step
-        %Da(l, j) = 20*log10(Da(l, j) / Max);
-        Da(l, j) = Da(l, j) / Max;
+        A1 = 2 * besselj(1, k * a * (sin(be(l)) * cos(al(j)) + sin(be(l)) * sin(al(j))));
+        A2 = k * a * (sin(be(l)) * cos(al(j)) + sin(be(l)) * sin(al(j)));
+        Ds(l, j) = A1 / A2;
     end
 end
-Max = max(Da, [], 'all');
-S = min(Da, [], 'all');
-L = M - S;
-L = 50;
-for l = 1:step
-    for j = 1:step
-        %Da(l, j) = abs(Da(l, j));
-    end
-end
-%{
-for i = 1:step
-polarplot(be(i), Da(i, 1), '.');
-hold on
-end
-rlim([-50 5])
-%}
 
+Min = max(Ds, [], 'all');
+%Ds = abs(Ds);
+Ds = (20 * log10(Ds / Min)); 
+x = zeros(step * step, 1);
+y = zeros(step * step, 1);
+z = zeros(step * step, 1);
 for l = 1:step
     for j = 1:step
-        x(l, j) = Da(l, j)*sin(be(l))*cos(al(j));
-        y(l, j) = Da(l, j)*sin(be(l))*sin(al(j));
-        z(l, j) = Da(l, j)*cos(be(l));
+        x((l-1)*step +  j) = Ds(l, j)*sin(be(l))*cos(al(j));
+        y((l-1)*step +  j) = Ds(l, j)*sin(be(l))*sin(al(j));
+        z((l-1)*step +  j) = Ds(l, j)*cos(be(l));
     end
 end
+
 figure
-for j = 1:step
-    for l = 1:step
-        %if(Da(l, j) > 1 / 2 * L)
-        if(z(l, j) > 0)
-            scatter3(x(l, j), y(l, j), z(l, j), '.');
-        end
-        hold on
-    end
-end
+scatter3(x, y, z, '.');
+%{
+[S, M] = bounds(oned);
+%oned = 20 * log10(oned / M);
+figure
+pax = polaraxes
+polarplot(th, oned)
+rlim([-40 0])
+
+
+
+N = 64;
+d = lambda / 2;
+d = 0.01
+aimth = 1 / 4 * pi;
+A3 = sin((N * k * d / 2) * (sin(th) - sin(aimth)))
+A4 = N * sin((k * d /2) * (sin(th) - sin(aimth)))
+direction = A3 ./ A4
+direction = oned .* direction
+[S, M] = bounds(direction)
+direction = 20 * log10(direction / M)
+figure
+pax = polaraxes
+polarplot(th, direction)
+rlim([-100 30])
 %}

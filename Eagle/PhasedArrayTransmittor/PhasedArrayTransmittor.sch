@@ -13651,14 +13651,12 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <parts>
 <part name="IC1" library="linear" library_urn="urn:adsk.eagle:library:262" deviceset="OP400" device="P" package3d_urn="urn:adsk.eagle:package:16407/2"/>
 <part name="IC2" library="linear" library_urn="urn:adsk.eagle:library:262" deviceset="*555" device="D" package3d_urn="urn:adsk.eagle:package:16404/2" technology="LM"/>
-<part name="CT5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0603K" package3d_urn="urn:adsk.eagle:package:23680/2" value="0.1u"/>
 <part name="SUPPLY1" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="DGND" device=""/>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="DGND" device=""/>
 <part name="RT7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-TRIMM" device="74W" package3d_urn="urn:adsk.eagle:package:23745/1" value="10k"/>
 <part name="RT72" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="10k"/>
 <part name="RT73" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="1.5k"/>
 <part name="JP1" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X2" device="" package3d_urn="urn:adsk.eagle:package:22435/2"/>
-<part name="CT6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0603K" package3d_urn="urn:adsk.eagle:package:23680/2" value="1000p"/>
 <part name="SUPPLY3" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="DGND" device=""/>
 <part name="RAMP1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="10k"/>
 <part name="RAMP2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="22k"/>
@@ -13681,6 +13679,8 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <part name="SUPPLY11" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="DGND" device=""/>
 <part name="CPASST" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-024X044" package3d_urn="urn:adsk.eagle:package:23630/1" value="0.1u"/>
 <part name="SUPPLY12" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="DGND" device=""/>
+<part name="CT5" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-024X044" package3d_urn="urn:adsk.eagle:package:23630/1" value="0.1u"/>
+<part name="CT6" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="025-024X044" package3d_urn="urn:adsk.eagle:package:23630/1" value="1000p"/>
 </parts>
 <sheets>
 <sheet>
@@ -13707,10 +13707,6 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <attribute name="NAME" x="-72.62" y="2.922" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-72.62" y="-20.827" size="1.778" layer="96"/>
 </instance>
-<instance part="CT5" gate="G$1" x="-84" y="-16" smashed="yes">
-<attribute name="NAME" x="-82.476" y="-15.619" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-82.476" y="-20.699" size="1.778" layer="96"/>
-</instance>
 <instance part="SUPPLY1" gate="G$1" x="-77" y="-27" smashed="yes">
 <attribute name="VALUE" x="-79.667" y="-30.175" size="1.778" layer="96"/>
 </instance>
@@ -13732,10 +13728,6 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <instance part="JP1" gate="G$1" x="-95" y="-9" smashed="yes">
 <attribute name="NAME" x="-101.35" y="-3.285" size="1.778" layer="95"/>
 <attribute name="VALUE" x="-101.35" y="-14.08" size="1.778" layer="96"/>
-</instance>
-<instance part="CT6" gate="G$1" x="-42" y="-41" smashed="yes">
-<attribute name="NAME" x="-40.476" y="-40.619" size="1.778" layer="95"/>
-<attribute name="VALUE" x="-40.476" y="-45.699" size="1.778" layer="96"/>
 </instance>
 <instance part="SUPPLY3" gate="G$1" x="-42" y="-52" smashed="yes">
 <attribute name="VALUE" x="-44.667" y="-55.175" size="1.778" layer="96"/>
@@ -13816,6 +13808,14 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <instance part="SUPPLY12" gate="G$1" x="-32" y="2" smashed="yes">
 <attribute name="VALUE" x="-34.667" y="-1.175" size="1.778" layer="96"/>
 </instance>
+<instance part="CT5" gate="G$1" x="-84" y="-16" smashed="yes">
+<attribute name="NAME" x="-82.476" y="-15.619" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-82.476" y="-20.699" size="1.778" layer="96"/>
+</instance>
+<instance part="CT6" gate="G$1" x="-42" y="-41" smashed="yes">
+<attribute name="NAME" x="-40.476" y="-40.619" size="1.778" layer="95"/>
+<attribute name="VALUE" x="-40.476" y="-45.699" size="1.778" layer="96"/>
+</instance>
 </instances>
 <busses>
 </busses>
@@ -13826,16 +13826,6 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <wire x1="-77" y1="-15.62" x2="-77" y2="-24.46" width="0.1524" layer="91"/>
 <pinref part="IC2" gate="A" pin="GND"/>
 <wire x1="-77" y1="-15.62" x2="-75.16" y2="-15.62" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="SUPPLY2" gate="G$1" pin="DGND"/>
-<pinref part="CT5" gate="G$1" pin="2"/>
-<wire x1="-84" y1="-24.46" x2="-84" y2="-21.08" width="0.1524" layer="91"/>
-</segment>
-<segment>
-<pinref part="SUPPLY3" gate="G$1" pin="DGND"/>
-<pinref part="CT6" gate="G$1" pin="2"/>
-<wire x1="-42" y1="-49.46" x2="-42" y2="-46.08" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="SUPPLY4" gate="G$1" pin="DGND"/>
@@ -13870,13 +13860,15 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <wire x1="-32" y1="6.92" x2="-32" y2="4.54" width="0.1524" layer="91"/>
 <pinref part="CPASST" gate="G$1" pin="2"/>
 </segment>
-</net>
-<net name="N$1" class="0">
 <segment>
-<pinref part="CT5" gate="G$1" pin="1"/>
-<wire x1="-84" y1="-10.54" x2="-84" y2="-13.46" width="0.1524" layer="91"/>
-<pinref part="IC2" gate="A" pin="CV"/>
-<wire x1="-84" y1="-10.54" x2="-75.16" y2="-10.54" width="0.1524" layer="91"/>
+<pinref part="SUPPLY2" gate="G$1" pin="DGND"/>
+<wire x1="-84" y1="-21.08" x2="-84" y2="-24.46" width="0.1524" layer="91"/>
+<pinref part="CT5" gate="G$1" pin="2"/>
+</segment>
+<segment>
+<pinref part="SUPPLY3" gate="G$1" pin="DGND"/>
+<pinref part="CT6" gate="G$1" pin="2"/>
+<wire x1="-42" y1="-49.46" x2="-42" y2="-46.08" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -13914,8 +13906,6 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <wire x1="-77" y1="-0.38" x2="-77" y2="6" width="0.1524" layer="91"/>
 <wire x1="-77" y1="6" x2="-46" y2="6" width="0.1524" layer="91"/>
 <wire x1="-46" y1="6" x2="-46" y2="-11" width="0.1524" layer="91"/>
-<pinref part="CT6" gate="G$1" pin="1"/>
-<wire x1="-42" y1="-35" x2="-42" y2="-38.46" width="0.1524" layer="91"/>
 <pinref part="IC2" gate="A" pin="THR"/>
 <wire x1="-49" y1="-10.54" x2="-54.84" y2="-10.54" width="0.1524" layer="91"/>
 <wire x1="-49" y1="-10.54" x2="-49" y2="-11" width="0.1524" layer="91"/>
@@ -13928,9 +13918,11 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <wire x1="-37" y1="-35.08" x2="-42" y2="-35.08" width="0.1524" layer="91"/>
 <wire x1="-42" y1="-35" x2="-42" y2="-35.08" width="0.1524" layer="91"/>
 <junction x="-42" y="-35.08"/>
-<junction x="-42" y="-35"/>
 <wire x1="-46" y1="-11" x2="-49" y2="-11" width="0.1524" layer="91"/>
 <junction x="-49" y="-11"/>
+<pinref part="CT6" gate="G$1" pin="1"/>
+<wire x1="-42" y1="-35" x2="-42" y2="-38.46" width="0.1524" layer="91"/>
+<junction x="-42" y="-35"/>
 </segment>
 </net>
 <net name="N$9" class="0">
@@ -14070,6 +14062,14 @@ BF959 corrected 2008.03.06&lt;br&gt;</description>
 <junction x="-42" y="16"/>
 <pinref part="CPASST" gate="G$1" pin="1"/>
 <wire x1="-32" y1="16" x2="-32" y2="14.54" width="0.1524" layer="91"/>
+</segment>
+</net>
+<net name="N$2" class="0">
+<segment>
+<pinref part="CT5" gate="G$1" pin="1"/>
+<pinref part="IC2" gate="A" pin="CV"/>
+<wire x1="-84" y1="-13.46" x2="-84" y2="-10.54" width="0.1524" layer="91"/>
+<wire x1="-84" y1="-10.54" x2="-75.16" y2="-10.54" width="0.1524" layer="91"/>
 </segment>
 </net>
 </nets>

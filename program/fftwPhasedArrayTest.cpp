@@ -1,22 +1,24 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <utility>
 //#include <fstream>
 //#include <string>
 //#include <sstream>
 #include <vector>
 #include <fftw3.h>
+#include <algorithm>
 #define N 8
 
-using namespace std;
+//using namespace std;
 
 int main(void)
 {
     FILE *ampArrayFile = fopen("resultList.txt", "r");
-    vector<float> ampArray(N, 0.0);
+    std::vector<float> ampArray(N, 0.0);
     FILE *phaseTimeFile = fopen("phaseList.txt", "r");
-    vector<float> phaseTimeRealList(1000, 0.0);
-    vector<float> phaseTimeImagList(1000, 0.0);
+    std::vector<float> phaseTimeRealList(1000, 0.0);
+    std::vector<float> phaseTimeImagList(1000, 0.0);
     FILE *fftResultFile = fopen("fftResult.txt", "w");
 
     bool judgeEOF = 0;
@@ -31,7 +33,7 @@ int main(void)
     fftw_plan p, q;
 
     int timeSliceNum = 0;
-    vector<float> powerArray(N, 0.0);
+    std::vector<float> powerArray(N, 0.0);
     while (judgeEOF = fscanf(ampArrayFile, "%f,%f,%f,%f,%f,%f,%f,%f", &ampArray[0], &ampArray[1], &ampArray[2], &ampArray[3], &ampArray[4], &ampArray[5], &ampArray[6], &ampArray[7]) != EOF)
     {
         for (int i = 0; i < N; i++)
@@ -41,6 +43,7 @@ int main(void)
         }
         p = fftw_plan_dft_1d(N, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
         fftw_execute(p);
+        std::rotate(out[0], out[(N >> 1) + 1], out[N]);
         printf("time:%3d   ", timeSliceNum);
         for (int i = 0; i < N; i++)
         {

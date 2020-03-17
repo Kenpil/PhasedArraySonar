@@ -14,6 +14,8 @@ v = 340;
 lambda = v/f;
 d = lambda/2;
 fileID = fopen('resultList.txt','w');
+expFileID = fopen('phaseList.txt', 'r');
+expList = importdata('phaseList.txt');
 
 result = zeros(round(resultLength/4), arrayNum);
 
@@ -33,3 +35,23 @@ end
 
 writematrix(result, 'resultList.txt');
 fclose(fileID);
+
+kNum = -arrayNum/2:arrayNum/2-1;
+sinthetak = lambda.*kNum/(d*arrayNum);
+D = zeros(length(sinthetak),arrayNum);
+for m = 1:arrayNum
+    for i = 1:length(sinthetak)
+        D(m,i) = exp(1i*2*pi*i*d*sinthetak(m)/lambda);
+    end
+end
+
+S = zeros(length(result),arrayNum);
+for i = 1:length(result)
+    for j = 1:arrayNum
+        S(i,j) = result(i,j)*(expList(i,1)+1i*expList(i,2));
+    end
+end
+
+B = zeros(length(S), arrayNum);
+B = S * (D.');
+abs(B)

@@ -2,17 +2,16 @@ clear all;
 clc;
 
 D = 3;
-snapShot = 100;
 c = 340;
 f = 40000;
-fs = 105000;
+fs = 103000;
 sample = 0:300;
 lambda = c/f;
 d = lambda/2;
 arrayN = 16;
 arrayK = -arrayN/2:arrayN/2-1;
 sinTheta = lambda * arrayK / (d * arrayN);
-cosSignal = cos(2*pi*sample*f/fs);
+cosSignal = 5*cos(2*pi*sample*f/fs);
 sinSignal = sin(2*pi*sample*f/fs);
 
 dirD = [1/6*pi, 0*pi, -2/3*pi];
@@ -28,16 +27,23 @@ for k = 1:D
         A(:,k) = vTheta(:,1);
 end
 
+SSigma = zeros(3,1);
+
+snapShot = 1;
+sample = 100;
 for snap = 1:snapShot
     %snap = 1;
     sigma2 = 0.01; % Noise variance
-    n = sqrt(sigma2)*(randn(arrayN,1) + 1j*randn(arrayN,1))/sqrt(2);
+    n = sqrt(sigma2)*(randn(arrayN,sample) + 1j*randn(arrayN,sample))/sqrt(2);
     
-    S = [cosSignal(snap)+1i*sinSignal(snap); cosSignal(snap+13)+1i*sinSignal(snap+13); cosSignal(snap+42)+1i*sinSignal(snap+42)];
-    %S = randn(3,1);
+    S = [cosSignal(1:sample); cosSignal(1:sample); cosSignal(1:sample)];
+    %S = [cosSignal(snap)*exp(-j*2*pi*f/fs*snap); cosSignal(snap)*exp(-j*2*pi*f/fs*snap); cosSignal(snap)*exp(-j*2*pi*f/fs*snap)];
+    S = randn(3,sample);
+    SSigma = SSigma + S;
     X = A * S + n;
     Rxx = Rxx + X * (X)';
 end
+SSigma = SSigma / snapShot;
 Rxx = Rxx / snapShot;
 [E, Dim] = eig(Rxx);
 

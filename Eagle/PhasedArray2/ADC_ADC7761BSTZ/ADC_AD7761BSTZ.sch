@@ -10251,10 +10251,8 @@ Source: &lt;a href="https://componentsearchengine.com/Datasheets/1/HCM4932768000
 <net name="N$12" class="0">
 <segment>
 <pinref part="U1" gate="G$1" pin="MODE3/GPIO3"/>
-<wire x1="-45.7" y1="-17.8" x2="-45.7" y2="-17.78" width="0.1524" layer="91"/>
-<wire x1="-45.7" y1="-17.78" x2="-38.1" y2="-17.78" width="0.1524" layer="91"/>
 <pinref part="JP3" gate="A" pin="1"/>
-<wire x1="-45.7" y1="-17.78" x2="-58.06" y2="-17.78" width="0.1524" layer="91"/>
+<wire x1="-38.1" y1="-17.78" x2="-58.06" y2="-17.78" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$5" class="0">

@@ -1345,77 +1345,6 @@ In this library the device names are the same as the pin names of the symbols, t
 </deviceset>
 </devicesets>
 </library>
-<library name="FC4SDCBMF24.576-T1">
-<description>&lt;CRYSTAL 24.5760MHZ 20PF SMD&lt;/b&gt;&lt;p&gt;
-&lt;author&gt;Created by SamacSys&lt;/author&gt;</description>
-<packages>
-<package name="FC4SDCBMF24576T1">
-<description>&lt;b&gt;C4SD&lt;/b&gt;&lt;br&gt;
-</description>
-<smd name="1" x="-4.75" y="0" dx="5.5" dy="2" layer="1"/>
-<smd name="2" x="4.75" y="0" dx="5.5" dy="2" layer="1"/>
-<text x="0" y="0" size="1.27" layer="25" align="center">&gt;NAME</text>
-<text x="0" y="0" size="1.27" layer="27" align="center">&gt;VALUE</text>
-<wire x1="-5.85" y1="2.5" x2="5.85" y2="2.5" width="0.2" layer="51"/>
-<wire x1="5.85" y1="2.5" x2="5.85" y2="-2.5" width="0.2" layer="51"/>
-<wire x1="5.85" y1="-2.5" x2="-5.85" y2="-2.5" width="0.2" layer="51"/>
-<wire x1="-5.85" y1="-2.5" x2="-5.85" y2="2.5" width="0.2" layer="51"/>
-<wire x1="-8.5" y1="3.5" x2="8.5" y2="3.5" width="0.1" layer="51"/>
-<wire x1="8.5" y1="3.5" x2="8.5" y2="-3.5" width="0.1" layer="51"/>
-<wire x1="8.5" y1="-3.5" x2="-8.5" y2="-3.5" width="0.1" layer="51"/>
-<wire x1="-8.5" y1="-3.5" x2="-8.5" y2="3.5" width="0.1" layer="51"/>
-<wire x1="-5.85" y1="2" x2="-5.85" y2="2.5" width="0.1" layer="21"/>
-<wire x1="-5.85" y1="2.5" x2="5.85" y2="2.5" width="0.1" layer="21"/>
-<wire x1="5.85" y1="2.5" x2="5.85" y2="2" width="0.1" layer="21"/>
-<wire x1="-5.85" y1="-2" x2="-5.85" y2="-2.5" width="0.1" layer="21"/>
-<wire x1="-5.85" y1="-2.5" x2="5.85" y2="-2.5" width="0.1" layer="21"/>
-<wire x1="5.85" y1="-2.5" x2="5.85" y2="-2" width="0.1" layer="21"/>
-</package>
-</packages>
-<symbols>
-<symbol name="FC4SDCBMF24.576-T1">
-<wire x1="-1.27" y1="2.54" x2="1.27" y2="2.54" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-2.54" x2="1.27" y2="2.54" width="0.254" layer="94"/>
-<wire x1="1.27" y1="-2.54" x2="-1.27" y2="-2.54" width="0.254" layer="94"/>
-<wire x1="-1.27" y1="2.54" x2="-1.27" y2="-2.54" width="0.254" layer="94"/>
-<text x="16.51" y="7.62" size="1.778" layer="95" align="center-left">&gt;NAME</text>
-<text x="16.51" y="5.08" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
-<pin name="1" x="-5.08" y="0" length="short"/>
-<pin name="2" x="5.08" y="0" length="short" rot="R180"/>
-<wire x1="-2.54" y1="-2.54" x2="-2.54" y2="2.54" width="0.254" layer="94"/>
-<wire x1="2.54" y1="2.54" x2="2.54" y2="-2.54" width="0.254" layer="94"/>
-</symbol>
-</symbols>
-<devicesets>
-<deviceset name="FC4SDCBMF24.576-T1" prefix="Y">
-<description>&lt;b&gt;CRYSTAL 24.5760MHZ 20PF SMD&lt;/b&gt;&lt;p&gt;
-Source: &lt;a href="http://www.foxonline.com/pdfs/C4SD.pdf"&gt; Datasheet &lt;/a&gt;</description>
-<gates>
-<gate name="G$1" symbol="FC4SDCBMF24.576-T1" x="0" y="0"/>
-</gates>
-<devices>
-<device name="" package="FC4SDCBMF24576T1">
-<connects>
-<connect gate="G$1" pin="1" pad="1"/>
-<connect gate="G$1" pin="2" pad="2"/>
-</connects>
-<technologies>
-<technology name="">
-<attribute name="ARROW_PART_NUMBER" value="FC4SDCBMF24.576-T1" constant="no"/>
-<attribute name="ARROW_PRICE-STOCK" value="https://www.arrow.com/en/products/fc4sdcbmf24.576-t1/fox-electronics" constant="no"/>
-<attribute name="DESCRIPTION" value="CRYSTAL 24.5760MHZ 20PF SMD" constant="no"/>
-<attribute name="HEIGHT" value="4.5mm" constant="no"/>
-<attribute name="MANUFACTURER_NAME" value="Fox" constant="no"/>
-<attribute name="MANUFACTURER_PART_NUMBER" value="FC4SDCBMF24.576-T1" constant="no"/>
-<attribute name="MOUSER_PART_NUMBER" value="559-FC4SDCBMF24576T1" constant="no"/>
-<attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.com/Search/Refine.aspx?Keyword=559-FC4SDCBMF24576T1" constant="no"/>
-</technology>
-</technologies>
-</device>
-</devices>
-</deviceset>
-</devicesets>
-</library>
 <library name="rcl" urn="urn:adsk.eagle:library:334">
 <description>&lt;b&gt;Resistors, Capacitors, Inductors&lt;/b&gt;&lt;p&gt;
 Based on the previous libraries:
@@ -9409,6 +9338,75 @@ Source: &lt;a href="https://www.analog.com/media/en/technical-documentation/data
 </deviceset>
 </devicesets>
 </library>
+<library name="HCM49">
+<description>&lt;b&gt;https://componentsearchengine.com&lt;/b&gt;&lt;p&gt;
+&lt;author&gt;Created by SamacSys&lt;/author&gt;</description>
+<packages>
+<package name="HCM4932768000ABJT">
+<description>&lt;b&gt;HCM4932768000ABJT-2&lt;/b&gt;&lt;br&gt;
+</description>
+<smd name="1" x="-4.25" y="0" dx="5.5" dy="1.5" layer="1"/>
+<smd name="2" x="4.25" y="0" dx="5.5" dy="1.5" layer="1"/>
+<text x="-0.25" y="0" size="1.27" layer="25" align="center">&gt;NAME</text>
+<text x="-0.25" y="0" size="1.27" layer="27" align="center">&gt;VALUE</text>
+<wire x1="-5.7" y1="2.35" x2="5.7" y2="2.35" width="0.2" layer="51"/>
+<wire x1="5.7" y1="2.35" x2="5.7" y2="-2.35" width="0.2" layer="51"/>
+<wire x1="5.7" y1="-2.35" x2="-5.7" y2="-2.35" width="0.2" layer="51"/>
+<wire x1="-5.7" y1="-2.35" x2="-5.7" y2="2.35" width="0.2" layer="51"/>
+<wire x1="-8.5" y1="3.35" x2="8" y2="3.35" width="0.1" layer="51"/>
+<wire x1="8" y1="3.35" x2="8" y2="-3.35" width="0.1" layer="51"/>
+<wire x1="8" y1="-3.35" x2="-8.5" y2="-3.35" width="0.1" layer="51"/>
+<wire x1="-8.5" y1="-3.35" x2="-8.5" y2="3.35" width="0.1" layer="51"/>
+<wire x1="-7.4" y1="-0.2" x2="-7.4" y2="-0.2" width="0.1" layer="21"/>
+<wire x1="-7.4" y1="-0.2" x2="-7.5" y2="-0.2" width="0.1" layer="21" curve="180"/>
+<wire x1="-7.5" y1="-0.2" x2="-7.5" y2="-0.2" width="0.1" layer="21"/>
+<wire x1="-7.5" y1="-0.2" x2="-7.4" y2="-0.2" width="0.1" layer="21" curve="180"/>
+<wire x1="-5.5" y1="-2.35" x2="5.5" y2="-2.35" width="0.1" layer="21"/>
+<wire x1="-5.5" y1="2.35" x2="5.5" y2="2.35" width="0.1" layer="21"/>
+</package>
+</packages>
+<symbols>
+<symbol name="HCM4932768000ABJT">
+<wire x1="0" y1="2.54" x2="2.54" y2="2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="2.54" y2="2.54" width="0.254" layer="94"/>
+<wire x1="2.54" y1="-2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="0" y1="2.54" x2="0" y2="-2.54" width="0.254" layer="94"/>
+<text x="26.67" y="7.62" size="1.778" layer="95" align="center-left">&gt;NAME</text>
+<text x="26.67" y="5.08" size="1.778" layer="96" align="center-left">&gt;VALUE</text>
+<pin name="CRYSTAL_1" x="-3.81" y="0" length="short"/>
+<pin name="CRYSTAL_2" x="6.35" y="0" length="short" rot="R180"/>
+<wire x1="-1.27" y1="2.54" x2="-1.27" y2="-2.54" width="0.254" layer="94"/>
+<wire x1="3.81" y1="2.54" x2="3.81" y2="-2.54" width="0.254" layer="94"/>
+</symbol>
+</symbols>
+<devicesets>
+<deviceset name="HCM4932768000ABJT" prefix="Y">
+<description>&lt;b&gt;Crystals 32.768MHz 18pF&lt;/b&gt;&lt;p&gt;
+Source: &lt;a href="https://componentsearchengine.com/Datasheets/1/HCM4932768000ABJT.pdf"&gt; Datasheet &lt;/a&gt;</description>
+<gates>
+<gate name="G$1" symbol="HCM4932768000ABJT" x="0" y="0"/>
+</gates>
+<devices>
+<device name="" package="HCM4932768000ABJT">
+<connects>
+<connect gate="G$1" pin="CRYSTAL_1" pad="1"/>
+<connect gate="G$1" pin="CRYSTAL_2" pad="2"/>
+</connects>
+<technologies>
+<technology name="">
+<attribute name="DESCRIPTION" value="Crystals 32.768MHz 18pF" constant="no"/>
+<attribute name="HEIGHT" value="4.3mm" constant="no"/>
+<attribute name="MANUFACTURER_NAME" value="Citizen Finetech Miyota" constant="no"/>
+<attribute name="MANUFACTURER_PART_NUMBER" value="HCM4932768000ABJT" constant="no"/>
+<attribute name="MOUSER_PART_NUMBER" value="695-HCM49-327-U" constant="no"/>
+<attribute name="MOUSER_PRICE-STOCK" value="https://www.mouser.com/Search/Refine.aspx?Keyword=695-HCM49-327-U" constant="no"/>
+</technology>
+</technologies>
+</device>
+</devices>
+</deviceset>
+</devicesets>
+</library>
 </libraries>
 <attributes>
 </attributes>
@@ -9426,7 +9424,6 @@ Source: &lt;a href="https://www.analog.com/media/en/technical-documentation/data
 <part name="AGND3" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
 <part name="JP3" library="pinhead" library_urn="urn:adsk.eagle:library:325" deviceset="PINHD-1X5" device="" package3d_urn="urn:adsk.eagle:package:22469/2"/>
 <part name="AGND4" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="AGND" device=""/>
-<part name="Y1" library="FC4SDCBMF24.576-T1" deviceset="FC4SDCBMF24.576-T1" device="" value="32.768MHz"/>
 <part name="C2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C1608" package3d_urn="urn:adsk.eagle:package:23621/2" value="22p"/>
 <part name="C3" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C1608" package3d_urn="urn:adsk.eagle:package:23621/2" value="22p"/>
 <part name="SUPPLY2" library="supply2" library_urn="urn:adsk.eagle:library:372" deviceset="DGND" device=""/>
@@ -9500,6 +9497,7 @@ Source: &lt;a href="https://www.analog.com/media/en/technical-documentation/data
 <part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-EU_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="10k"/>
 <part name="VDD8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VDD" device=""/>
 <part name="P+7" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="VCC" device=""/>
+<part name="Y1" library="HCM49" deviceset="HCM4932768000ABJT" device=""/>
 </parts>
 <sheets>
 <sheet>
@@ -9528,10 +9526,6 @@ Source: &lt;a href="https://www.analog.com/media/en/technical-documentation/data
 </instance>
 <instance part="AGND4" gate="VR1" x="7.7" y="47.1" smashed="yes" rot="R180">
 <attribute name="VALUE" x="6.24" y="55.18" size="1.778" layer="96" rot="R270"/>
-</instance>
-<instance part="Y1" gate="G$1" x="23" y="-46" smashed="yes">
-<attribute name="NAME" x="28.51" y="-47.38" size="1.778" layer="95" align="center-left"/>
-<attribute name="VALUE" x="18.51" y="-49.92" size="1.778" layer="96" align="center-left"/>
 </instance>
 <instance part="C2" gate="G$1" x="17" y="-53" smashed="yes">
 <attribute name="NAME" x="18.524" y="-52.619" size="1.778" layer="95"/>
@@ -9783,6 +9777,10 @@ Source: &lt;a href="https://www.analog.com/media/en/technical-documentation/data
 </instance>
 <instance part="P+7" gate="VCC" x="-44" y="13" smashed="yes" rot="R90">
 <attribute name="VALUE" x="-41.46" y="10.46" size="1.778" layer="96" rot="R180"/>
+</instance>
+<instance part="Y1" gate="G$1" x="21" y="-46" smashed="yes">
+<attribute name="NAME" x="47.67" y="-38.38" size="1.778" layer="95" align="center-left"/>
+<attribute name="VALUE" x="47.67" y="-40.92" size="1.778" layer="96" align="center-left"/>
 </instance>
 </instances>
 <busses>
@@ -10228,14 +10226,15 @@ Source: &lt;a href="https://www.analog.com/media/en/technical-documentation/data
 <net name="N$5" class="0">
 <segment>
 <pinref part="C2" gate="G$1" pin="1"/>
-<wire x1="17" y1="-46" x2="17" y2="-50.46" width="0.1524" layer="91"/>
-<pinref part="Y1" gate="G$1" pin="1"/>
-<wire x1="17" y1="-46" x2="17.92" y2="-46" width="0.1524" layer="91"/>
 <wire x1="17.78" y1="-40" x2="17" y2="-40" width="0.1524" layer="91"/>
-<wire x1="17" y1="-40" x2="17" y2="-46" width="0.1524" layer="91"/>
-<junction x="17" y="-46"/>
+<wire x1="17" y1="-40" x2="17" y2="-47" width="0.1524" layer="91"/>
 <pinref part="U1" gate="G$1" pin="XTAL1"/>
+<wire x1="17" y1="-47" x2="17" y2="-50.46" width="0.1524" layer="91"/>
 <wire x1="17.78" y1="-40" x2="17.78" y2="-38.1" width="0.1524" layer="91"/>
+<pinref part="Y1" gate="G$1" pin="CRYSTAL_1"/>
+<wire x1="17" y1="-47" x2="17.19" y2="-47" width="0.1524" layer="91"/>
+<wire x1="17.19" y1="-47" x2="17.19" y2="-46" width="0.1524" layer="91"/>
+<junction x="17" y="-47"/>
 </segment>
 </net>
 <net name="N$7" class="0">
@@ -10243,12 +10242,13 @@ Source: &lt;a href="https://www.analog.com/media/en/technical-documentation/data
 <pinref part="U1" gate="G$1" pin="XTAL2/MCLK"/>
 <wire x1="20.32" y1="-40" x2="20.32" y2="-38.1" width="0.1524" layer="91"/>
 <pinref part="C3" gate="G$1" pin="1"/>
-<wire x1="28" y1="-46" x2="28" y2="-50.46" width="0.1524" layer="91"/>
-<pinref part="Y1" gate="G$1" pin="2"/>
-<wire x1="28" y1="-46" x2="28.08" y2="-46" width="0.1524" layer="91"/>
 <wire x1="20.32" y1="-40" x2="28" y2="-40" width="0.1524" layer="91"/>
-<wire x1="28" y1="-40" x2="28" y2="-46" width="0.1524" layer="91"/>
-<junction x="28" y="-46"/>
+<wire x1="28" y1="-40" x2="28" y2="-47" width="0.1524" layer="91"/>
+<pinref part="Y1" gate="G$1" pin="CRYSTAL_2"/>
+<wire x1="28" y1="-47" x2="28" y2="-50.46" width="0.1524" layer="91"/>
+<wire x1="28" y1="-47" x2="27.35" y2="-47" width="0.1524" layer="91"/>
+<wire x1="27.35" y1="-47" x2="27.35" y2="-46" width="0.1524" layer="91"/>
+<junction x="28" y="-47"/>
 </segment>
 </net>
 <net name="N$15" class="0">
